@@ -1,27 +1,8 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
+import useFoods from "../hooks/useFoods";
 import { Text } from "@chakra-ui/react";
 
-interface Food {
-  id: number;
-  name: string;
-}
-
-interface FetchFoodResponse {
-  count: number;
-  results: Food[];
-}
-
 const FoodGrids = () => {
-  const [foods, setFoods] = useState<Food[]>([]);
-  const [error, setError] = useState("");
-
-  useEffect(() => {
-    apiClient
-      .get<FetchFoodResponse>("/foods")
-      .then((res) => setFoods(res.data.results))
-      .catch((err) => setError(err.message));
-  });
+  const { foods, error } = useFoods();
 
   return (
     <>
