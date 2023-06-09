@@ -12,8 +12,9 @@ export interface Hotel{
 export interface Food {
     id: number;
     name: string;
-    background_image: string
-    hotels_list: Hotel[]
+    background_image: string;
+    hotels_list: Hotel[];
+    metacritic: number;
   }
 
 
