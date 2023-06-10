@@ -8,7 +8,7 @@ interface Props {
 }
 function FoodCard({ food }: Props) {
   return (
-    <Card borderRadius={10} overflow="hidden" width={80}>
+    <Card width="300px" borderRadius={10} overflow="hidden">
       <Image src={food.background_image} width={80}></Image>
       <CardBody>
         <Heading fontSize="2xl">{food.name}</Heading>

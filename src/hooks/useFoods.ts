@@ -25,23 +25,28 @@ interface FetchFoodResponse {
 
 const useFoods = () => {
 
-    const [foods, setFoods] = useState<Food[]>([]);
+  const [foods, setFoods] = useState<Food[]>([]);
   const [error, setError] = useState("");
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
 
+    setLoading(true)
     apiClient
       .get<FetchFoodResponse>("/foods", { signal: controller.signal})
-      .then((res) => setFoods(res.data.results))
+      .then((res) => {
+        setFoods(res.data.results),
+        setLoading(false)})
       .catch((err) =>{
         if (err instanceof CanceledError) return;
-        setError(err.message)} );
+        setError(err.message)
+      setLoading(false)} );
 
     return () => controller.abort()
   }, []);
 
-  return {foods, error}
+  return {foods, error, isLoading}
 
 }
 
