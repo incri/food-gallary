@@ -5,7 +5,7 @@ import FoodCardSkeleton from "./FoodCardSkeleton";
 import FoodCardContainer from "./FoodCardContainer";
 
 const FoodGrids = () => {
-  const { foods, error, isLoading } = useFoods();
+  const { data, error, isLoading } = useFoods();
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -18,7 +18,7 @@ const FoodGrids = () => {
               <FoodCardSkeleton key={skeleton} />
             </FoodCardContainer>
           ))}
-        {foods.map((food) => (
+        {data.map((food) => (
           <FoodCardContainer>
             <FoodCard key={food.id} food={food} />
           </FoodCardContainer>

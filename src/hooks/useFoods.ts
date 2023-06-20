@@ -1,53 +1,19 @@
-import { useEffect, useState } from "react";
-import apiClient from "../services/api-client";
-import { CanceledError } from "axios";
+import useData from "./useData";
 
-export interface Hotel{
+export interface Hotel {
   id: number;
   name: string;
   slug: string;
-
 }
 
 export interface Food {
-    id: number;
-    name: string;
-    background_image: string;
-    hotels_list: Hotel[];
-    metacritic: number;
-  }
-
-
-interface FetchFoodResponse {
-    count: number;
-    results: Food[];
-  }
-
-const useFoods = () => {
-
-  const [foods, setFoods] = useState<Food[]>([]);
-  const [error, setError] = useState("");
-  const [isLoading, setLoading] = useState(false);
-
-  useEffect(() => {
-    const controller = new AbortController();
-
-    setLoading(true)
-    apiClient
-      .get<FetchFoodResponse>("/foods", { signal: controller.signal})
-      .then((res) => {
-        setFoods(res.data.results),
-        setLoading(false)})
-      .catch((err) =>{
-        if (err instanceof CanceledError) return;
-        setError(err.message)
-      setLoading(false)} );
-
-    return () => controller.abort()
-  }, []);
-
-  return {foods, error, isLoading}
-
+  id: number;
+  name: string;
+  background_image: string;
+  hotels_list: Hotel[];
+  metacritic: number;
 }
+
+const useFoods = () => useData<Food>("/foods");
 
 export default useFoods;
