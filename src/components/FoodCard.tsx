@@ -9,7 +9,7 @@ interface Props {
 function FoodCard({ food }: Props) {
   return (
     <Card>
-      <Image src={food.background_image} width={80}></Image>
+      <Image src={food.background_image}></Image>
       <CardBody>
         <Heading fontSize="2xl">{food.name}</Heading>
         <HStack justifyContent="space-between">
