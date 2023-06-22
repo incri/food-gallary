@@ -3,9 +3,14 @@ import { SimpleGrid, Text } from "@chakra-ui/react";
 import FoodCard from "./FoodCard";
 import FoodCardSkeleton from "./FoodCardSkeleton";
 import FoodCardContainer from "./FoodCardContainer";
+import { Categories } from "../hooks/useCategories";
 
-const FoodGrids = () => {
-  const { data, error, isLoading } = useFoods();
+interface Props {
+  selectedCategory: Categories | null;
+}
+
+const  FoodGrids = ({ selectedCategory }: Props) => {
+  const { data, error, isLoading } = useFoods(selectedCategory);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (
@@ -14,13 +19,13 @@ const FoodGrids = () => {
       <SimpleGrid columns={{ sm: 1, md: 2, lg: 3 }} padding="10px" spacing={10}>
         {isLoading &&
           skeletons.map((skeleton) => (
-            <FoodCardContainer>
-              <FoodCardSkeleton key={skeleton} />
+            <FoodCardContainer key={skeleton}>
+              <FoodCardSkeleton />
             </FoodCardContainer>
           ))}
         {data.map((food) => (
-          <FoodCardContainer>
-            <FoodCard key={food.id} food={food} />
+          <FoodCardContainer key={food.id}>
+            <FoodCard food={food} />
           </FoodCardContainer>
         ))}
       </SimpleGrid>

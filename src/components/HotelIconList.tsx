@@ -26,7 +26,7 @@ function HotelIconList({ hotels }: Props) {
     <>
       <HStack marginY={1}>
         {hotels.map((hotel) => (
-          <Icon as={iconMap[hotel.slug]} color="gray.500"></Icon>
+          <Icon key={hotel.id} as={iconMap[hotel.slug]} color="gray.500"></Icon>
         ))}
       </HStack>
     </>

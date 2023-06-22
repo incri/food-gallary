@@ -1,3 +1,4 @@
+import { Categories } from "./useCategories";
 import useData from "./useData";
 
 export interface Hotel {
@@ -14,6 +15,9 @@ export interface Food {
   metacritic: number;
 }
 
-const useFoods = () => useData<Food>("/foods");
+const useFoods = (selectedCategory: Categories | null) =>
+  useData<Food>("/foods", { params: { categories: selectedCategory?.id } }, [
+    selectedCategory?.id,
+  ]);
 
 export default useFoods;
