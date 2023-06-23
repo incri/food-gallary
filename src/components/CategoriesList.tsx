@@ -10,9 +10,10 @@ import useCategories, { Categories } from "../hooks/useCategories";
 
 interface Props {
   onSelectCategory: (category: Categories) => void;
+  selectedCategory: Categories | null;
 }
 
-const CategoriesList = ({ onSelectCategory }: Props) => {
+const CategoriesList = ({ selectedCategory, onSelectCategory }: Props) => {
   const { data, isLoading, error } = useCategories();
 
   if (error) return null;
@@ -29,6 +30,7 @@ const CategoriesList = ({ onSelectCategory }: Props) => {
               src={category.background_image}
             />
             <Button
+              fontWeight={category.id === selectedCategory?.id ? 'bold' : 'normal'} 
               onClick={() => onSelectCategory(category)}
               fontSize="lg"
               variant="link"
