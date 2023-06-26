@@ -4,6 +4,7 @@ import FoodGrids from "./components/FoodGrids";
 import CategoriesList from "./components/CategoriesList";
 import { useState } from "react";
 import { Categories } from "./hooks/useCategories";
+import HotelSelector from "./components/HotelSelector";
 
 function App() {
   const [selectedCategories, setSelectedCategories] =
@@ -30,6 +31,7 @@ function App() {
         </Show>
 
         <GridItem area="main">
+          <HotelSelector />
           <FoodGrids selectedCategory={selectedCategories} />
         </GridItem>
       </Grid>
