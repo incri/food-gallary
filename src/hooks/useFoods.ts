@@ -15,9 +15,19 @@ export interface Food {
   metacritic: number;
 }
 
-const useFoods = (selectedCategory: Categories | null) =>
-  useData<Food>("/foods", { params: { categories: selectedCategory?.id } }, [
-    selectedCategory?.id,
-  ]);
+const useFoods = (
+  selectedCategory: Categories | null,
+  selectedHotel: Hotel | null
+) =>
+  useData<Food>(
+    "/foods",
+    {
+      params: {
+        categories: selectedCategory?.id,
+        hotels: selectedHotel?.id,
+      },
+    },
+    [selectedCategory?.id, selectedHotel?.id]
+  );
 
 export default useFoods;

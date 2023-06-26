@@ -1,4 +1,4 @@
-import useFoods from "../hooks/useFoods";
+import useFoods, { Hotel } from "../hooks/useFoods";
 import { SimpleGrid, Text } from "@chakra-ui/react";
 import FoodCard from "./FoodCard";
 import FoodCardSkeleton from "./FoodCardSkeleton";
@@ -7,10 +7,11 @@ import { Categories } from "../hooks/useCategories";
 
 interface Props {
   selectedCategory: Categories | null;
+  selectedHotel: Hotel | null;
 }
 
-const  FoodGrids = ({ selectedCategory }: Props) => {
-  const { data, error, isLoading } = useFoods(selectedCategory);
+const FoodGrids = ({ selectedCategory, selectedHotel }: Props) => {
+  const { data, error, isLoading } = useFoods(selectedCategory, selectedHotel);
   const skeletons = [1, 2, 3, 4, 5, 6];
 
   return (

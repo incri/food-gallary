@@ -5,10 +5,13 @@ import CategoriesList from "./components/CategoriesList";
 import { useState } from "react";
 import { Categories } from "./hooks/useCategories";
 import HotelSelector from "./components/HotelSelector";
+import { Hotel } from "./hooks/useFoods";
 
 function App() {
   const [selectedCategories, setSelectedCategories] =
     useState<Categories | null>(null);
+
+  const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
   return (
     <>
       <Grid
@@ -31,8 +34,14 @@ function App() {
         </Show>
 
         <GridItem area="main">
-          <HotelSelector />
-          <FoodGrids selectedCategory={selectedCategories} />
+          <HotelSelector
+            selectedHotel={selectedHotel}
+            onSelectHotel={(hotel) => setSelectedHotel(hotel)}
+          />
+          <FoodGrids
+            selectedHotel={selectedHotel}
+            selectedCategory={selectedCategories}
+          />
         </GridItem>
       </Grid>
     </>
