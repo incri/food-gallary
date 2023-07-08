@@ -22,6 +22,7 @@ const useFoods = (foodQuery: FoodQuery) =>
       params: {
         categories: foodQuery.category?.id,
         hotels: foodQuery.hotel?.id,
+        sort_by: foodQuery.sortOrder,
       },
     },
     [foodQuery]

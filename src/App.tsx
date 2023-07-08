@@ -11,6 +11,7 @@ import SortSelector from "./components/SortSelector";
 export interface FoodQuery {
   category: Categories | null;
   hotel: Hotel | null;
+  sortOrder: string;
 }
 
 function App() {
@@ -45,7 +46,12 @@ function App() {
               selectedHotel={foodQuery.hotel}
               onSelectHotel={(hotel) => setFoodQuery({ ...foodQuery, hotel })}
             />
-            <SortSelector />
+            <SortSelector
+              sortOrder={foodQuery.sortOrder}
+              onSelectSortOrder={(sortOrder) =>
+                setFoodQuery({ ...foodQuery, sortOrder })
+              }
+            />
           </HStack>
           <FoodGrids foodQuery={foodQuery} />
         </GridItem>
