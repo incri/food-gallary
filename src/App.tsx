@@ -1,4 +1,4 @@
-import { Grid, GridItem, Show } from "@chakra-ui/react";
+import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import FoodGrids from "./components/FoodGrids";
 import CategoriesList from "./components/CategoriesList";
@@ -6,6 +6,7 @@ import { useState } from "react";
 import { Categories } from "./hooks/useCategories";
 import HotelSelector from "./components/HotelSelector";
 import { Hotel } from "./hooks/useFoods";
+import SortSelector from "./components/SortSelector";
 
 export interface FoodQuery {
   category: Categories | null;
@@ -39,10 +40,13 @@ function App() {
         </Show>
 
         <GridItem area="main">
-          <HotelSelector
-            selectedHotel={foodQuery.hotel}
-            onSelectHotel={(hotel) => setFoodQuery({ ...foodQuery, hotel })}
-          />
+          <HStack spacing={5} paddingLeft={2} marginBottom={5}>
+            <HotelSelector
+              selectedHotel={foodQuery.hotel}
+              onSelectHotel={(hotel) => setFoodQuery({ ...foodQuery, hotel })}
+            />
+            <SortSelector />
+          </HStack>
           <FoodGrids foodQuery={foodQuery} />
         </GridItem>
       </Grid>
