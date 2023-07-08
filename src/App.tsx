@@ -7,11 +7,14 @@ import { Categories } from "./hooks/useCategories";
 import HotelSelector from "./components/HotelSelector";
 import { Hotel } from "./hooks/useFoods";
 
-function App() {
-  const [selectedCategories, setSelectedCategories] =
-    useState<Categories | null>(null);
+export interface FoodQuery {
+  category: Categories | null;
+  hotel: Hotel | null;
+}
 
-  const [selectedHotel, setSelectedHotel] = useState<Hotel | null>(null);
+function App() {
+  const [foodQuery, setFoodQuery] = useState<FoodQuery>({} as FoodQuery);
+
   return (
     <>
       <Grid
@@ -27,21 +30,20 @@ function App() {
         <Show above="lg">
           <GridItem area="aside" paddingX={5}>
             <CategoriesList
-              selectedCategory={selectedCategories}
-              onSelectCategory={(category) => setSelectedCategories(category)}
+              selectedCategory={foodQuery.category}
+              onSelectCategory={(category) =>
+                setFoodQuery({ ...foodQuery, category })
+              }
             />
           </GridItem>
         </Show>
 
         <GridItem area="main">
           <HotelSelector
-            selectedHotel={selectedHotel}
-            onSelectHotel={(hotel) => setSelectedHotel(hotel)}
+            selectedHotel={foodQuery.hotel}
+            onSelectHotel={(hotel) => setFoodQuery({ ...foodQuery, hotel })}
           />
-          <FoodGrids
-            selectedHotel={selectedHotel}
-            selectedCategory={selectedCategories}
-          />
+          <FoodGrids foodQuery={foodQuery} />
         </GridItem>
       </Grid>
     </>

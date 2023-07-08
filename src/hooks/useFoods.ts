@@ -1,4 +1,4 @@
-import { Categories } from "./useCategories";
+import { FoodQuery } from "../App";
 import useData from "./useData";
 
 export interface Hotel {
@@ -15,19 +15,16 @@ export interface Food {
   metacritic: number;
 }
 
-const useFoods = (
-  selectedCategory: Categories | null,
-  selectedHotel: Hotel | null
-) =>
+const useFoods = (foodQuery: FoodQuery) =>
   useData<Food>(
     "/foods",
     {
       params: {
-        categories: selectedCategory?.id,
-        hotels: selectedHotel?.id,
+        categories: foodQuery.category?.id,
+        hotels: foodQuery.hotel?.id,
       },
     },
-    [selectedCategory?.id, selectedHotel?.id]
+    [foodQuery]
   );
 
 export default useFoods;
