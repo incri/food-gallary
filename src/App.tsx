@@ -1,4 +1,4 @@
-import { Grid, GridItem, HStack, Show } from "@chakra-ui/react";
+import { Box, Grid, GridItem, HStack, Show } from "@chakra-ui/react";
 import NavBar from "./components/NavBar";
 import FoodGrids from "./components/FoodGrids";
 import CategoriesList from "./components/CategoriesList";
@@ -7,6 +7,7 @@ import { Categories } from "./hooks/useCategories";
 import HotelSelector from "./components/HotelSelector";
 import { Hotel } from "./hooks/useFoods";
 import SortSelector from "./components/SortSelector";
+import FoodHeading from "./components/FoodHeading";
 
 export interface FoodQuery {
   category: Categories | null;
@@ -30,7 +31,7 @@ function App() {
         <GridItem area="nav">
           <NavBar
             onSearch={(searchText) =>
-              setFoodQuery({ ...foodQuery, searchText  })
+              setFoodQuery({ ...foodQuery, searchText })
             }
           />
         </GridItem>
@@ -46,18 +47,21 @@ function App() {
         </Show>
 
         <GridItem area="main">
-          <HStack spacing={5} paddingLeft={2} marginBottom={5}>
-            <HotelSelector
-              selectedHotel={foodQuery.hotel}
-              onSelectHotel={(hotel) => setFoodQuery({ ...foodQuery, hotel })}
-            />
-            <SortSelector
-              sortOrder={foodQuery.sortOrder}
-              onSelectSortOrder={(sortOrder) =>
-                setFoodQuery({ ...foodQuery, sortOrder })
-              }
-            />
-          </HStack>
+          <Box paddingLeft={2}>
+            <FoodHeading foodQuery={foodQuery} />
+            <HStack spacing={5} marginBottom={5}>
+              <HotelSelector
+                selectedHotel={foodQuery.hotel}
+                onSelectHotel={(hotel) => setFoodQuery({ ...foodQuery, hotel })}
+              />
+              <SortSelector
+                sortOrder={foodQuery.sortOrder}
+                onSelectSortOrder={(sortOrder) =>
+                  setFoodQuery({ ...foodQuery, sortOrder })
+                }
+              />
+            </HStack>
+          </Box>
           <FoodGrids foodQuery={foodQuery} />
         </GridItem>
       </Grid>
