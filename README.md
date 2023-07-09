@@ -1,7 +1,6 @@
 # Food Gallery
 
-![Food Gallery]([https://example.com/food-gallery.png](https://github.com/incri/food-gallary/blob/main/public/food-gallary.png?raw=true))
-
+![Food Gallery](public/food-gallary.png)
 Food Gallery is a web application built with React that showcases a collection of mouth-watering food items. This repository contains the front-end code for the application, allowing you to explore and modify the user interface.
 
 ## Deployment
