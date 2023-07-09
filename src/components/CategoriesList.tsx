@@ -1,6 +1,7 @@
 import {
   Button,
   HStack,
+  Heading,
   Image,
   List,
   ListItem,
@@ -20,27 +21,37 @@ const CategoriesList = ({ selectedCategory, onSelectCategory }: Props) => {
   if (isLoading) return <Spinner />;
 
   return (
-    <List>
-      {data.map((category) => (
-        <ListItem key={category.id} paddingY="5px">
-          <HStack>
-            <Image
-              boxSize="32px"
-              borderRadius={8}
-              src={category.background_image}
-            />
-            <Button
-              fontWeight={category.id === selectedCategory?.id ? 'bold' : 'normal'} 
-              onClick={() => onSelectCategory(category)}
-              fontSize="lg"
-              variant="link"
-            >
-              {category.name}
-            </Button>
-          </HStack>
-        </ListItem>
-      ))}
-    </List>
+    <>
+      <Heading fontSize="2xl" marginBottom={3}>
+        Categories
+      </Heading>
+      <List>
+        {data.map((category) => (
+          <ListItem key={category.id} paddingY="5px">
+            <HStack>
+              <Image
+                objectFit="cover"
+                boxSize="32px"
+                borderRadius={8}
+                src={category.background_image}
+              />
+              <Button
+                whiteSpace="normal"
+                textAlign="left"
+                fontWeight={
+                  category.id === selectedCategory?.id ? "bold" : "normal"
+                }
+                onClick={() => onSelectCategory(category)}
+                fontSize="lg"
+                variant="link"
+              >
+                {category.name}
+              </Button>
+            </HStack>
+          </ListItem>
+        ))}
+      </List>
+    </>
   );
 };
 
