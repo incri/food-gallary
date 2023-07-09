@@ -1,5 +1,5 @@
 import axios from "axios";
 
 export default axios.create({
-    baseURL: 'http://127.0.0.1:8000/menu'
-})
+  baseURL: "https://food-menu-yg0m.onrender.com/menu",
+});
