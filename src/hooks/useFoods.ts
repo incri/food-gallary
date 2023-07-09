@@ -23,6 +23,7 @@ const useFoods = (foodQuery: FoodQuery) =>
         categories: foodQuery.category?.id,
         hotels: foodQuery.hotel?.id,
         sort_by: foodQuery.sortOrder,
+        search_name: foodQuery.searchText,
       },
     },
     [foodQuery]
