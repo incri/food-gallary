@@ -11,11 +11,11 @@ function FoodCard({ food }: Props) {
     <Card>
       <Image src={food.background_image}></Image>
       <CardBody>
-        <Heading fontSize="2xl">{food.name}</Heading>
-        <HStack justifyContent="space-between">
+        <HStack marginBottom={3} justifyContent="space-between">
           <HotelIconList hotels={food.hotels_list} />
           <CriticScore score={food.metacritic} />
         </HStack>
+        <Heading fontSize="2xl">{food.name}</Heading>
       </CardBody>
     </Card>
   );
